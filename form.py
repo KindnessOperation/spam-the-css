@@ -21,9 +21,10 @@ async def task(response: str):
     logger.info("Sending \'%s\' to Google Form" % response)
     async with aiohttp.ClientSession() as sess:
         data = {
-            'entry.19495669': response,
-            'entry.426600610': ''
+            'entry.1366551100': response,
         }
+        if (random.randint(1, 2) == 1):
+            data['entry.426600610'] = 'Option 1'
         await sess.post('https://docs.google.com/forms/u/0/d/e/1FAIpQLSf3P0HeFP6mqTaogKCqfQKjJWzX2JpPVhk3GiyfCJeB9Z8Rbw/formResponse', data=data)
 
 async def main():
@@ -54,5 +55,5 @@ async def spam(tasks_num: int):
 
 if __name__ == '__main__':
     # asyncio.run(task("HAI"))
-    asyncio.run(main())
-    # asyncio.run(spam(1000))
+    # asyncio.run(main())
+    asyncio.run(spam(100))
