@@ -6,7 +6,6 @@ import sys
 import random
 import string
 
-
 basic_config = logging.basicConfig(filename="logs/bot.log", 
     level=logging.INFO,
     format="%(name)s - %(asctime)s-%(levelname)s:%(message)s", 
@@ -39,7 +38,8 @@ async def main():
         random.shuffle(lines)
         for response in lines:
             await task(response)
-            await asyncio.sleep(60)
+            sleeptime = random.randint(60, 60*10)
+            await asyncio.sleep(sleeptime)
         logger.info("Cycling & Shuffling Responses...")
 
 async def spam(tasks_num: int):
